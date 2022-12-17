@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather API</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="css/style.csss" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+    <style>
+      #map { 
+        height: 45vh;
+        border-radius: 20px;
+      }
+
+      .leaflet-popup-content-wrapper {
+        width: 100%;
+      }
+      @media screen and (max-width: 768px) {
+        .card-con{display: flex;flex-direction: column;}
+      }
+    </style>
+  </head>
+  <body style="background-image: url('https://images.unsplash.com/photo-1463947628408-f8581a2f4aca?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
+  background-repeat: no-repeat;background-size: cover;background-attachment: fixed;padding: 0 0vh;">
+    <section id="home">
+      <div class="container text-center mt-5" style=" padding: 2vh 0 5vh 0;background-color: #ffffff8a;">
+        <img src="img/icons8-weather-48.png" alt="logo" />
+        <h1>PENCARIAN CUACA</h1>
+        <div id="MyClockDisplay" class="clock" style="font-size: 24px;font-weight: 500;" onload="showTime()"></div>
+      </div>
+      <div class="container" style="height: 500px; ">
+        <div class="row text-center card-con" >
+          <div class="col mt-5">
+            <div class="card" style="background: #000000d0;height: 60vh; border-radius: 20px;">
+              <div class="search" style="padding: 5vh ;">
+                <input type="text" class="search-bar" placeholder="Search" style="width: 50%;padding: 0.5vh 2vh; border-radius: 10px;">
+                <button style="padding: 0.5vh 2vh; border-radius: 10px;"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1.5em"
+                    width="1.5em" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0 0 11.6 0l43.6-43.5a8.2 8.2 0 0 0 0-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z">
+                    </path>
+                  </svg></button>
+              </div>
+              <div class="weather loading" >
+                <h2 class="city" style="color: white;font-size: 28px;"></h2>
+                <h1 class="temp" style="color: white;font-size: 28px;"></h1>
+                <div class="flex" style="color: white;font-size: 28px;">
+                  <img src="https://openweathermap.org/img/wn/04n@2x.png" alt="" class="icon" />
+                  <div class="description">Masukkan nama kota</div>
+                </div>
+                <div class="humidity" style="color: white;"></div>
+                <div class="wind" style="color: white;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col mt-5">
+            <div class="card" style="background-color: #000000d0; color: #f2f2f2; height: 100vh; border-radius: 20px;padding: 5vh;height: 60vh;">
+              <img src="" alt="" />
+              <h3>Maps Location</h3>
+              <div class="map">
+                <div id="map"></div> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="./script.js"></script>
+    <script>
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+        // x.innerHTML = "Geolocation is not supported by this browser.";
+        console.log("Geolocation is not supported by this browser.");
+      }
+
+      
+    </script>
+  </body>
+</html>
